@@ -12,15 +12,20 @@
   stroke-linejoin: round;
 }
 
-.q0-9 { fill:rgb(247,251,255); }
-.q1-9 { fill:rgb(222,235,247); }
-.q2-9 { fill:rgb(198,219,239); }
-.q3-9 { fill:rgb(158,202,225); }
-.q4-9 { fill:rgb(107,174,214); }
-.q5-9 { fill:rgb(66,146,198); }
-.q6-9 { fill:rgb(33,113,181); }
-.q7-9 { fill:rgb(8,81,156); }
-.q8-9 { fill:rgb(8,48,107); }
+    
+.fs0 { fill:rgb(230,215,46); }
+.fs1 { fill:rgb(230,201,46); }
+.fs2 { fill:rgb(230,187,46); }
+.fs3 { fill:rgb(230,173,46); }
+.fs4 { fill:rgb(230,159,46); }
+.fs5 { fill:rgb(230,145,46); }
+.fs6 { fill:rgb(230,131,46); }
+.fs7 { fill:rgb(230,117,46); }
+.fs8 { fill:rgb(230,102,46); }
+.fs9 { fill:rgb(230,88,46); }
+.fs10 { fill:rgb(230,74,46); }
+.fs11 { fill:rgb(230,60,46); }
+.fs12 { fill:rgb(230,46,46); }
     
 path:hover { opacity: 0.5; }
 
@@ -36,9 +41,9 @@ var width = 960,
 
 var rateById = d3.map();
 
-var quantize = d3.scale.log()
+var quantize = d3.scale.quantile()
     .domain([0, 0.15])
-    .range(d3.range(9).map(function(i) { return "q" + i + "-9"; }));
+    .range(d3.range(13).map(function(i) { return "fs" + i; }));
 
 var path = d3.geo.path();
 
@@ -66,5 +71,52 @@ function ready(error, us) {
       .attr("class", "states")
       .attr("d", path);
 }
+    
+    // pie chart
+    /* 
+
+var p_width = 960,
+    p_height = 500,
+    p_radius = Math.min(p_width, p_height) / 2;
+
+var p_color = d3.scale.ordinal()
+    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+var arc = d3.svg.arc()
+    .outerRadius(radius - 10)
+    .innerRadius(0);
+
+var pie = d3.layout.pie()
+    .sort(null)
+    .value(function(d) { return d.population; });
+
+var pie_svg = d3.select("body").append("svg")
+    .attr("width", p_width)
+    .attr("height", p_height)
+  .append("g")
+    .attr("transform", "translate(" + p_width / 2 + "," + p_height / 2 + ")");
+
+d3.csv("data/causes.csv", function(error, data) {
+
+  data.forEach(function(d) {
+    d.population = +d.population;
+  });
+
+  var g = svg.selectAll(".arc")
+      .data(pie(data))
+    .enter().append("g")
+      .attr("class", "arc");
+
+  g.append("path")
+      .attr("d", arc)
+      .style("fill", function(d) { return color(d.data.age); });
+
+  g.append("text")
+      .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+      .attr("dy", ".35em")
+      .style("text-anchor", "middle")
+      .text(function(d) { return d.data.age; });
+
+}); */
 
 </script>
