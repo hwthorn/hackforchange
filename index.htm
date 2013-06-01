@@ -21,6 +21,8 @@
 .q6-9 { fill:rgb(33,113,181); }
 .q7-9 { fill:rgb(8,81,156); }
 .q8-9 { fill:rgb(8,48,107); }
+    
+path:hover { opacity: 0.5; }
 
 </style>
 <body>
@@ -34,8 +36,8 @@ var width = 960,
 
 var rateById = d3.map();
 
-var quantize = d3.scale.quantize()
-    .domain([0, .15])
+var quantize = d3.scale.log()
+    .domain([0, 0.15])
     .range(d3.range(9).map(function(i) { return "q" + i + "-9"; }));
 
 var path = d3.geo.path();
