@@ -53,8 +53,8 @@ var svg = d3.select("body").append("svg")
 
 queue()
     .defer(d3.json, "data/us.json")
-    // .defer(d3.tsv, "data/unemployment.tsv", function(d) { rateById.set(d.id, +d.rate); })
-    .defer(d3.json, "data/fire-data.json", function(d) { rateById.set(d[1], d[2]); })
+    .defer(d3.tsv, "data/unemployment.tsv", function(d) { rateById.set(d.id, +d.rate); })
+    //.defer(d3.json, "data/fire-data.json", function(d) { rateById.set(d[1], +d[2]); })
     .await(ready);
 
 function ready(error, us) {
