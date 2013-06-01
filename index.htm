@@ -27,7 +27,7 @@
 .fs11 { fill:rgb(230,60,46); }
 .fs12 { fill:rgb(230,46,46); }
     
-path:hover { opacity: 0.5; }
+path.zip-code:hover { opacity: 0.5; }
 
 </style>
 <body>
@@ -62,7 +62,7 @@ function ready(error, us) {
     .selectAll("path")
       .data(topojson.feature(us, us.objects.counties).features)
     .enter().append("path")
-      .attr("class", function(d) { return quantize(rateById.get(d.id)); })
+      .attr("class", function(d) { return "zip-code " + quantize(rateById.get(d.id)); })
       .attr("title", function(d) { return "Zip-Code: " + d.id; })
       .attr("d", path);
 
